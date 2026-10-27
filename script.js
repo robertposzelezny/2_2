@@ -63,7 +63,29 @@
   });
 
   cw2.addEventListener("click", function () {
-    //TODO
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((array) => {
+        let html = `
+            <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                <tr>
+                    <th>ID</th>
+                    <th>Tytuł</th>
+                    <th>Treść</th>
+                </tr>
+        `;
+        array.forEach((post) => {
+          html += `
+                <tr>
+                    <td>${post.id}</td>
+                    <td style="color: red;">${post.title}</td>
+                    <td style="color: green;">${post.body}</td>
+                </tr>
+            `;
+        });
+        html += "</table>";
+        answer.innerHTML = html;
+      });
   });
 
   cw3.addEventListener("click", function () {
