@@ -76,7 +76,7 @@
         `;
         array.forEach((post) => {
           html += `
-                <tr>
+                <tr id="${post.id}">
                     <td>${post.id}</td>
                     <td style="color: red;">${post.title}</td>
                     <td style="color: green;">${post.body}</td>
@@ -85,6 +85,13 @@
         });
         html += "</table>";
         answer.innerHTML = html;
+
+        answer.querySelectorAll("tr[id]").forEach((row) => {
+          row.addEventListener("click", () => {
+            const post = array.find((p) => p.id === Number(row.id));
+            console.log(post);
+          });
+        });
       });
   });
 
